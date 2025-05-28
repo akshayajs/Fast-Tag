@@ -1,0 +1,34 @@
+{{#if @model.errorMessage}}
+  <p class="error-message">{{@model.errorMessage}}</p>
+{{else if @model.tollLogs}}
+  {{#if @model.tollLogs.length}}
+  <div class=" backlink">
+  <LinkTo @route="vehicle-toll.toll-entry"><center>back to Toll Entry</center></LinkTo>
+</div>
+    <div class="table-wrapper">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Vehicle Number</th>
+            <th>Toll Pass Time</th>
+            <th>Charged Fare</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each @model.tollLogs as |log|}}
+            <tr class="hover:bg-gray-50">
+              <td >{{log.vehicleNumber}}</td>
+              <td >{{format-date log.timestamp}}</td> 
+              <td >₹{{log.chargedFare}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <p class="no-records">No toll logs found yet.</p>
+  {{/if}}
+{{else}}
+  <p class="loading-message">Loading toll records...</p>
+{{/if}}
+

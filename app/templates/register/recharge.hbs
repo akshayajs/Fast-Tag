@@ -1,0 +1,87 @@
+<section id="pricing" class="pricing-section">
+  <div class="section-header">
+    <h2 class="title">RECHARGE PRICING</h2>
+    <div class="line"></div>
+    <p class="subtitle">Charges applicable on FASTag Tag Joining Fee - ₹100 including all applicable taxes</p>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>NPCI Vehicle Class</th>
+          <th>Description</th>
+          <th>Minimum Recharge Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>4</td><td>Car/Jeep/Van (VC4)</td><td>100.00</td></tr>
+        <tr><td>4</td><td>LCV</td><td>200.00</td></tr>
+        <tr><td>6</td><td>Bus/Truck</td><td>300.00</td></tr>
+        <tr><td>6</td><td> Upto 3 Axle Vehicle</td><td>350.00</td></tr>
+        <tr><td>12</td><td> 4 to 6 Axle </td><td>500.00</td></tr>
+        <tr><td>12</td><td>HCM/EME</td><td>500.00</td></tr>
+        <tr><td>12</td><td>7 or more Axle</td><td>600.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="container">
+  <h2>Recharge FASTag Account</h2>
+  <form {{on "submit" this.submitRecharge}}>
+  <div>
+    <label for="vehicleNumber">Vehicle Number:</label>
+    <input
+      type="text"
+      id="vehicleNumber"
+      value={{this.vehicleNumber}}
+      {{on "input" this.updateVehicleNumber}}
+      placeholder="TN01XY1122"
+      required
+    />
+  </div>
+
+  {{#if this.isLoadingVehicleDetails}}
+    <p>Loading vehicle details...</p>
+  {{/if}}
+
+  {{#if this.vehicleType}}
+    <div>
+      <label>Vehicle Type:</label>
+      <p><strong>{{this.vehicleType}}</strong></p>
+    </div>
+  {{/if}}
+
+  {{#if this.ownerName}}
+    <div>
+      <label>Owner Name:</label>
+      <p><strong>{{this.ownerName}}</strong></p>
+    </div>
+  {{/if}}
+  {{#if this.currentBalance}}
+    <div>
+      <label>Current Balance:</label>
+      <p><strong>₹{{this.currentBalance}}</strong></p>
+    </div>
+  {{/if}}
+
+  <div>
+    <label for="amount">Recharge Amount:</label>
+    
+    <input
+      type="number"
+      id="amount"
+      value={{this.amount}}
+      {{on "input" this.updateAmount}}
+      min="1"
+      required
+    />
+  </div>
+  <button type="submit">Recharge</button>
+</form>
+
+{{#if this.responseMessage}}
+  <p class="response-message">{{this.responseMessage}}</p>
+  
+{{/if}}
+</div>

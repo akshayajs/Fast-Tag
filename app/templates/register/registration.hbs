@@ -1,0 +1,41 @@
+{{page-title "Registration"}}
+<div class="container">
+   <h2>FASTag Registration</h2>
+      <form {{on "submit" this.submitForm}}>
+     <label>
+       Vehicle Number:
+       <Input type="text" {{on "input" this.updateVehicleNumber}} @value={{this.vehicleNumber}} 
+       placeholder="TN01XY1122"/>
+     </label>
+
+     <label>
+       Vehicle Type:
+       <select {{on "change" this.updateVehicleType}}>
+         <option value="">Select a type</option>
+         <option value="CAR">Car</option>
+         <option value="JEEP">Jeep</option>
+         <option value="VAN">Van</option>
+         <option value="LCV">LCV</option>
+         <option value="TRUCK">Truck</option>
+         <option value="BUS">Bus</option>
+         <option value="UPTO 3 AXLE VEHICLE">UPTO 3 AXLE VEHICLE</option>
+         <option value="4 TO 6 AXLE">4 TO 6 AXLE</option>
+         <option value="HCM/EME">HCM/EME</option>
+         <option value="7 OR MORE AXLE">7 OR MORE AXLE</option>
+       </select>
+     </label>
+
+     <label>
+       Owner Name:
+       <Input type="text" {{on "input" this.updateOwnerName}} @value={{this.ownerName}} />
+     </label>
+
+     <button type="submit">Register</button>
+   </form>
+
+   {{#if this.responseMessage}}
+     <h3>Response:</h3>
+     <p>{{this.responseMessage}}</p>
+   {{/if}}
+   </div>
+{{outlet}}

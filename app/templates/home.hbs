@@ -1,0 +1,49 @@
+
+<h1>FAST-Tag Toll</h1>
+<nav>
+  <ul>
+    <li><LinkTo @route="home">Home</LinkTo></li>
+     <li><LinkTo @route="vehicle-toll.toll-entry">Toll Gate</LinkTo></li> 
+    <li><LinkTo @route="register.registration">Register</LinkTo></li>
+  </ul>
+</nav>
+
+<section id="services" class="section">
+  <div class="section-header text-center mb-4">
+    <h4 class="section-title">BENEFITS</h4>
+    <hr class="lines">
+    <p class="section-subtitle">
+      NHAI FASTag is a perfect solution for a hassle-free trip on national highways, it enables automatic deduction of toll charges and lets you pass through the toll plaza without stopping for the cash transaction.
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="item-boxes text-center p-3 shadow rounded">
+        <div class="icon mb-2">
+          <i class="fa fa-tags fa-2x"></i>
+        </div>
+        <h4>Wider Recharge Option</h4>
+        <p>NHAI Prepaid wallet offers a variety of options to recharge. You can use your debit card, credit card, net banking, and UPI.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="item-boxes text-center p-3 shadow rounded">
+        <div class="icon mb-2">
+          <i class="fa fa-rupee fa-2x"></i>
+        </div>
+        <h4>Flexible Recharge</h4>
+        <p>Choose your recharge amount as per your own convenience and need.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="lines">
+
+<footer>
+    <LinkTo @route="register.registration"><center><button type="submit">Register</button></center></LinkTo>
+</footer>
+
+{{outlet}} 

@@ -1,0 +1,28 @@
+
+   <h2>Registered Vehicles</h2>
+   {{#if @model.length}}
+   <div class = "table-wrapper">
+     <table class = "vehicle-table">
+       <thead>
+         <tr>
+           <th>Vehicle Number</th>
+           <th>Vehicle Type</th>
+           <th>Owner Name</th>
+         </tr>
+       </thead>
+
+       <tbody>
+         {{#each @model as |vehicle|}}
+           <tr>
+             <td>{{vehicle.vehicleNumber}}</td>
+             <td>{{vehicle.vehicleType}}</td>
+             <td>{{vehicle.ownerName}}</td>
+           </tr>
+         {{/each}}
+       </tbody>
+     </table>
+     </div>
+   {{else}}
+     <p>No vehicles registered yet.</p>
+   {{/if}}
+ 

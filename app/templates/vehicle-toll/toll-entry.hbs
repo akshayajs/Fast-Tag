@@ -1,0 +1,67 @@
+
+  <h2 class="mb-4">Toll Gate Entry</h2>
+
+  <div class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label for="vehicleNumberInput" class="form-label">Enter Vehicle Number:</label>
+      <Input
+        @type="text"
+        class="form-control"
+        id="vehicleNumberInput"
+        @value={{this.vehicleNumber}}
+        {{on "input" this.updateVehicleNumber}}
+        placeholder="TN01XY1122"
+      />
+    </div>
+
+    {{#if this.isLoading}}
+      <p class="text-info">Checking vehicle status...</p>
+    {{/if}}
+
+    {{#if this.isRegistered}}
+      <div class="alert alert-success mt-3" role="alert">
+        <h4 class="alert-heading">Vehicle Registered!</h4>
+        <p><strong>Vehicle Number:</strong> {{this.vehicleDetails.vehicleNumber}}</p>
+        <p><strong>Vehicle Type:</strong> {{this.vehicleDetails.vehicleType}}</p>
+        <p><strong>Owner Name:</strong> {{this.vehicleDetails.ownerName}}</p>
+        <p><strong>Current Balance:</strong> ₹{{this.vehicleDetails.balance}}</p>
+        <hr>
+        <p class="mb-0">Estimated Toll Fare: ₹{{this.estimatedFare}}</p>
+        {{#if (gt this.vehicleDetails.balance this.estimatedFare)}}
+          <button type="button" class="btn btn-primary mt-3" {{on "click" this.processToll}}>Process Toll</button>
+        {{else}}
+          <p class="mb-0 text-danger">Insufficient balance! Required: ₹{{this.estimatedFare}}, Available: ₹{{this.vehicleDetails.balance}}.</p>
+          <p>Please <LinkTo @route="register.recharge" class="alert-link">recharge your Fastag</LinkTo>.</p> {{!-- Updated to nested route --}}
+        {{/if}}
+      </div>
+    {{else if this.errorMessage}}
+      <div class="alert alert-warning mt-3" role="alert">
+        <h4 class="alert-heading">Vehicle Not Registered</h4>
+        <p>{{this.errorMessage}}</p>
+        <p>Please <LinkTo @route="register" class="alert-link">register your vehicle</LinkTo> to proceed.</p>
+      </div>
+    {{/if}}
+
+    {{#if this.tollProcessingMessage}}
+      <p class="text-info mt-3">{{this.tollProcessingMessage}}</p>
+    {{/if}}
+
+    {{#if this.tollSuccessDetails}}
+      <div class="alert alert-success mt-3" role="alert">
+        <h4>Toll Processed Successfully!</h4>
+        <p><strong>Charged:</strong> ₹{{this.tollSuccessDetails.chargedFare}}</p>
+
+        {{#if this.tollSuccessDetails.isDiscountApplied}}
+            <p class="text-success mb-0"></p>
+        {{/if}}
+        <p class="mt-2">Thank you!</p>
+      </div>
+    {{/if}}
+
+    {{#if this.tollProcessingError}}
+      <div class="alert alert-danger mt-3" role="alert">
+        <h4>Error Processing Toll</h4>
+        <p>{{this.tollProcessingError}}</p>
+      </div>
+    {{/if}}
+  </div>
